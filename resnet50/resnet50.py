@@ -12,7 +12,6 @@ import zipfile
 import urllib.request
 from tqdm import tqdm
 
-
 # Set random seeds for reproducibility
 np.random.seed(42)
 torch.manual_seed(42)
@@ -129,13 +128,17 @@ def train_model(model, train_loader, val_loader, num_epochs=10, lr=0.001):
     Returns:
         Dictionary with training history
     """
+    
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.1)
 
     history = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
+    current_path = os.path.abspath('.')
+    print('currentpath', current_path)
 
+    best_val_loss = float('inf')
     for epoch in range(num_epochs):
         print(f'\nEpoch {epoch+1}/{num_epochs}')
         print('-' * 30)
@@ -151,8 +154,13 @@ def train_model(model, train_loader, val_loader, num_epochs=10, lr=0.001):
         print(f'Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%')
         print(f'Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%')
 
-        scheduler.step()
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            torch.save(model.state_dict(), f'./resnet50_finetuned_plantCLEF.pth')
+            print(f"\nBest model parameters updated at epoch {epoch}!")
 
+        scheduler.step()
+    
     return history
 
 

@@ -5,15 +5,15 @@ from torch.utils.data import DataLoader, random_split
 import os
 
 
-os.chdir("/scratch/ezq9qu/images_max_side_800")
-DATA_DIR = os.getcwd()
+# os.chdir("/scratch/ezq9qu/images_max_side_800")
+# DATA_DIR = os.getcwd()
 
 
-RESIZE_SIZE = 256
-IMG_SIZE = 224 
-BATCH_SIZE = 32
-NUM_CLASSES = 7806 # As per the challenge overview
-NUM_WORKERS = os.cpu_count() # Use all available CPU cores for loading
+# RESIZE_SIZE = 256
+# IMG_SIZE = 224 
+# BATCH_SIZE = 32
+# NUM_CLASSES = 7806 # As per the challenge overview
+# NUM_WORKERS = os.cpu_count() # Use all available CPU cores for loading
 
 
 class SinglePlantDataLoader:

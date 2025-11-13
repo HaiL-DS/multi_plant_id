@@ -199,10 +199,10 @@ class QuadratTilingDataset_Inference(Dataset):
     
 
         for img_path in sorted(img_paths): # Sort to make it reproducible
-            for i in range(self.num_tiles): # e.g., 0-8
+            for i in range(self.num_tiles): 
                 self.samples.append((img_path, i))
                 
-        print(f"Found {len(img_paths)} images, creating {len(self.samples)} total tiles.")
+        
 
     def __len__(self):
         """Returns the total number of tiles."""
@@ -210,7 +210,6 @@ class QuadratTilingDataset_Inference(Dataset):
 
     def __getitem__(self, idx):
         """
-        --- MODIFIED ---
         Fetches the tile at the given index.
         Returns the tile tensor and the original image path.
         """
@@ -225,17 +224,12 @@ class QuadratTilingDataset_Inference(Dataset):
             if self.transform:
                 tile = self.transform(tile)
             
-            # --- MODIFIED RETURN ---
             # Return the tile and its source path
             # The path is crucial for grouping predictions later
             return tile, img_path
 
         except Exception as e:
             print(f"Error loading tile for image {img_path} at index {idx}: {e}")
-            # Assumes IMG_SIZE is defined in your script's scope
-            dummy_tile = torch.zeros((3, IMG_SIZE, IMG_SIZE)) 
-            return dummy_tile, "error_path"
-
 
     def _get_tile(self, img, tile_index):
         """
@@ -296,6 +290,7 @@ def main():
     # 1. Define the transform
     # This MUST match the transform you use to build the memory bank
     # It must include Resize() because the grid tiles are not square
+
     inference_transform = transforms.Compose([
         transforms.Resize((IMG_SIZE, IMG_SIZE)), # Crucial
         transforms.ToTensor(),
@@ -305,6 +300,7 @@ def main():
     
 
     #QUADRAT_DIR = ""
+    #IMG_SIZE = 244
 
     quadrat_test_set = QuadratTilingDataset_Inference(
         data_dir=QUADRAT_DIR,

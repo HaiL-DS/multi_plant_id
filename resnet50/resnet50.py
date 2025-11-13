@@ -138,7 +138,8 @@ def train_model(model, train_loader, val_loader, num_epochs=10, lr=0.001):
     current_path = os.path.abspath('.')
     print('currentpath', current_path)
 
-    best_val_loss = float('inf')
+    #best_val_loss = float('inf')
+    best_val_loss = 2.00
     for epoch in range(num_epochs):
         print(f'\nEpoch {epoch+1}/{num_epochs}')
         print('-' * 30)
@@ -157,7 +158,7 @@ def train_model(model, train_loader, val_loader, num_epochs=10, lr=0.001):
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             torch.save(model.state_dict(), f'./resnet50_finetuned_plantCLEF.pth')
-            print(f"\nBest model parameters updated at epoch {epoch}!")
+            print(f"\nBest model parameters updated at epoch {epoch+1}!")
 
         scheduler.step()
     

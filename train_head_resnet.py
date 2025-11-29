@@ -24,7 +24,7 @@ train_data_path = os.path.join(project_root, "PlantCLEF2025_data/images_max_side
 saved_model_path = os.path.join(project_root, "resnet50")
 
 from loading.data_loader import SinglePlantDataLoader
-from resnet50 import resnet50
+from resnet50 import resnet50_trainhead
 
 #os.chdir(train_data_path)
 #os.chdir("/scratch/hl9h/images_max_side_800")
@@ -49,45 +49,46 @@ train_loader, val_loader, test_loader = data_splitter.get_dataloaders()
 
 
 #--------------------------------------------------------------------------
-# Fine-tune ResNet50 Model
+# Traing the Classification Head of ResNet50 Model
 #--------------------------------------------------------------------------
 
 # Initialize Configuations and Data Sets
 NUM_CLASS = 7806
-NUM_EPOCH = 10
-LR = 0.0001
-DEVICE = resnet50.device
+NUM_EPOCH = 20
+LR = 0.01
+DEVICE = resnet50_trainhead.device
 print(f'Using device: {DEVICE}')
 
 
-# Fine Tuning ResNet50 with PlantCLEF Training Data
+# Traing the Classification Head of ResNet50 with PlantCLEF Training Data
 print("\n" + "="*60)
-print("Transfer Learning - Fine Tuning ResNet50 with PlantCLEF Training Data")
+print("Transfer Learning - Training the Classification Head of ResNet50 with PlantCLEF Training Data")
 print("="*60)
 
 try:
-    print("\nFine-tuning ResNet50 ...")
+    print("\nTraining the Head of ResNet50 ...")
     
-    pretrained_finetune = resnet50.get_resnet50_pretrained(num_classes=NUM_CLASS, fine_tune=True)
-    num_params, trainable_params = resnet50.count_parameters(pretrained_finetune)
-    model_size = resnet50.get_model_size_mb(pretrained_finetune)
+    pretrained_resnet = resnet50_trainhead.get_resnet50_pretrained(num_classes=NUM_CLASS, fine_tune=False)
+    num_params, trainable_params = resnet50_trainhead.count_parameters(pretrained_resnet)
+    model_size = resnet50_trainhead.get_model_size_mb(pretrained_resnet)
     print(f"Total parameters: {num_params:,d}")
     print(f"Trainable parameters: {trainable_params:,d}")
     print(f"Model size: {model_size:.2f} MB")
     
-    finetune_history = resnet50.train_model(pretrained_finetune, 
+    trainhead_history = resnet50_trainhead.train_model(pretrained_resnet, 
                                    train_loader, 
                                    val_loader,
+                                   device=DEVICE,
                                    num_epochs=NUM_EPOCH, 
                                    lr=LR)
     
     #resnet50.plot_training_history(finetune_history, title="Fine Tuning History")
-    results_df = pd.DataFrame(finetune_history)
-    results_df.to_csv(f'{saved_model_path}/finetune_history.csv', index=False)
-    print(f"\nTraining {NUM_EPOCH} epochs finished! Fine tuning history saved to 'finetune_history.csv'")
+    results_df = pd.DataFrame(trainhead_history)
+    results_df.to_csv(f'{saved_model_path}/trainhead_history.csv', index=False)
+    print(f"\nTraining {NUM_EPOCH} epochs finished! Head training history saved to 'trainhead_history.csv'")
     
 except Exception as e:
-    print(f"Error in Transfer Learning (Fine-tune): {e}")
-    finetune_history = {}
+    print(f"Error in Transfer Learning (Train-head): {e}")
+    trainhead_history = {}
 
 

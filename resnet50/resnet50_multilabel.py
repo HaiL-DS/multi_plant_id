@@ -231,7 +231,8 @@ def multi_label_prediction(model, dataloader, device, threshold=0.5):
                 batch_preds = dict(zip(quadrat_ids,preds_idx))                           
                 all_preds_idx.append(batch_preds)
                 
-    return all_preds_idx   # return multi-label indices for each image as {quadrat_id: [pred_idx1, pred_idx2, ...]}
+    return all_preds_idx   # return multi-label indices for each image as   {quadrat_id1: [pred_idx1, pred_idx2], quadrat_id2: [...], ...}  for non-tiling
+                           #                                             or {quadrat_id: [[pred_idx1, pred_idx2], [pred_idx2, pred_idx3], [...], ...]}  for tiling
                            # results will be a list of dictionaries (each dict represents a minibatch):
                            # for non-tiling, each dictionary contains the quadrat IDs and their predicted indices (idx) of a minibatch
                            # for tiling, each dictionary contains only one quadrat ID and its predicted indices (idx) 
@@ -269,6 +270,52 @@ def pred_idx_to_df(all_preds_idx: list, idx_to_cls_mapdict: dict) -> pd.DataFram
             cls = idx_to_cls_mapdict[str(idx)]
             if cls not in quadrat_preds:
                 quadrat_preds.append(cls)            
+        ids_col.append(quadrat_preds)
+
+    result_df['species_ids'] = ids_col
+    return result_df
+
+
+# Only for multiple tiling cases
+def pred_idx_vote_aggr_to_df(all_preds_idx: list, idx_to_cls_mapdict: dict, cutoff=0.25) -> pd.DataFrame:
+    '''
+    A function to process model prediction/inference results into a dataframe.
+    Takes in a list of dictionaries:
+       Each dictionary contains a quadrat ID (key) and a list of tile predictions (value).
+       Each element in the (value) list is a list of predicted indices (idx) for one tile.
+    Returns a DataFrame with three columns: 'quadrat_id', 'species_idx', 'species_ids'.
+    '''
+    
+    result_df = pd.DataFrame(columns=["quadrat_id", "species_idx"])
+    ids_col = []
+    
+    for dict in all_preds_idx:
+        k, v = next(iter(dict.items()))
+        vote_counts = np.zeros(7806)   # for frequency vote aggregation        
+        for tile_idx in v:   # v is a nested list of list of indices
+            if len(tile_idx) != 0:
+                for idx in tile_idx:
+                    vote_counts[idx] += 1
+
+        # Convert counts into probability-like scores [0,1] / Normalize counts wrt the max frequency
+        if vote_counts.max() == 0:
+            quadrat_preds_multihot = vote_counts
+        else:
+            scores = vote_counts / vote_counts.max()  # shape [1, 7806], the label with the most votes gets a score of 1.0  
+            # Decide which labels to keep by cutting off certain indices (the higher the cutoff, the more stringent)
+            quadrat_preds_multihot = (scores >= cutoff).astype(int)  # multi-hot: [1, 7806]
+            
+        quadrat_preds_idx = np.where(quadrat_preds_multihot == 1)[0]  # get the indices based on multihot
+        
+        df_i = pd.DataFrame({"quadrat_id": k, "species_idx": [quadrat_preds_idx.tolist()]})
+        result_df = pd.concat([result_df, df_i],ignore_index=True)
+
+    
+    for quadrat in result_df['species_idx']:
+        quadrat_preds = []
+        for idx in quadrat:
+            cls = idx_to_cls_mapdict[str(idx)]
+            quadrat_preds.append(cls)            
         ids_col.append(quadrat_preds)
 
     result_df['species_ids'] = ids_col

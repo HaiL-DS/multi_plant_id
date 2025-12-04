@@ -1,0 +1,144 @@
+Loading data from: /sfs/weka/scratch/hl9h/PlantCLEF2025_data/images_max_side_800
+
+Splitting dataset
+
+Found 1408033 total images belonging to 7806 classes.
+
+--- Dataloader Pipelines Created ---
+Using device: cuda
+
+============================================================
+Transfer Learning - Train a Multilabel Classification Head on ResNet50 with PlantCLEF Training Data
+============================================================
+
+Training ResNet50 ...
+Total parameters: 39,502,526
+Trainable parameters: 38,057,598
+Model size: 150.89 MB
+currentpath /sfs/weka/scratch/hl9h
+
+Epoch 1/20
+------------------------------
+Train Loss: 0.0005, Train Acc: 41.97%
+Val Loss: 0.0017, Val Acc: 41.28%
+
+Best model parameters saved at epoch 1!
+
+Epoch 2/20
+------------------------------
+Train Loss: 0.0005, Train Acc: 47.98%
+Val Loss: 0.0005, Val Acc: 44.28%
+
+Best model parameters saved at epoch 2!
+
+Epoch 3/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 51.11%
+Val Loss: 0.0005, Val Acc: 46.61%
+
+Best model parameters saved at epoch 3!
+
+Epoch 4/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 53.43%
+Val Loss: 0.0005, Val Acc: 48.31%
+
+Best model parameters saved at epoch 4!
+
+Epoch 5/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 55.21%
+Val Loss: 0.0005, Val Acc: 49.18%
+
+Best model parameters saved at epoch 5!
+
+Epoch 6/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 59.01%
+Val Loss: 0.0004, Val Acc: 51.89%
+
+Best model parameters saved at epoch 6!
+
+Epoch 7/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 60.24%
+Val Loss: 0.0004, Val Acc: 52.28%
+
+Best model parameters saved at epoch 7!
+
+Epoch 8/20
+------------------------------
+Train Loss: 0.0004, Train Acc: 60.78%
+Val Loss: 0.0004, Val Acc: 52.62%
+
+Best model parameters saved at epoch 8!
+
+Epoch 9/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 61.26%
+Val Loss: 0.0004, Val Acc: 52.88%
+
+Best model parameters saved at epoch 9!
+
+Epoch 10/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 61.69%
+Val Loss: 0.0004, Val Acc: 52.98%
+
+Epoch 11/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.14%
+Val Loss: 0.0004, Val Acc: 53.24%
+
+Best model parameters saved at epoch 11!
+
+Epoch 12/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.20%
+Val Loss: 0.0004, Val Acc: 53.52%
+
+Best model parameters saved at epoch 12!
+
+Epoch 13/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.20%
+Val Loss: 0.0004, Val Acc: 53.35%
+
+Best model parameters saved at epoch 13!
+
+Epoch 14/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.33%
+Val Loss: 0.0004, Val Acc: 53.31%
+
+Epoch 15/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.37%
+Val Loss: 0.0004, Val Acc: 53.33%
+
+Epoch 16/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.44%
+Val Loss: 0.0004, Val Acc: 53.39%
+
+Epoch 17/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.45%
+Val Loss: 0.0004, Val Acc: 53.52%
+
+Epoch 18/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.48%
+Val Loss: 0.0004, Val Acc: 53.20%
+
+Epoch 19/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.46%
+Val Loss: 0.0004, Val Acc: 53.42%
+
+Epoch 20/20
+------------------------------
+Train Loss: 0.0003, Train Acc: 62.54%
+Val Loss: 0.0004, Val Acc: 53.38%
+
+Fine tuning 20 epochs finished! Fine tune history saved to 'multilabel_finetune_history.csv'

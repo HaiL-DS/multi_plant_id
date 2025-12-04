@@ -1,0 +1,149 @@
+Loading data from: /sfs/weka/scratch/hl9h/PlantCLEF2025_data/images_max_side_800
+
+Splitting dataset
+
+Found 1408033 total images belonging to 7806 classes.
+
+--- Dataloader Pipelines Created ---
+Using device: cuda
+
+============================================================
+Transfer Learning - Train a Multilabel Classification Head on ResNet50 with PlantCLEF Training Data
+============================================================
+
+Training ResNet50 ...
+Total parameters: 39,502,526
+Trainable parameters: 15,994,494
+Model size: 150.89 MB
+currentpath /sfs/weka/scratch/hl9h
+
+Epoch 1/30
+------------------------------
+Train Loss: 0.0014, Train Acc: 8.18%
+Val Loss: 0.0010, Val Acc: 14.91%
+
+Best model parameters saved at epoch 1!
+
+Epoch 2/30
+------------------------------
+Train Loss: 0.0010, Train Acc: 15.54%
+Val Loss: 0.0010, Val Acc: 17.05%
+
+Best model parameters saved at epoch 2!
+
+Epoch 3/30
+------------------------------
+Train Loss: 0.0009, Train Acc: 18.16%
+Val Loss: 0.0010, Val Acc: 18.06%
+
+Best model parameters saved at epoch 3!
+
+Epoch 4/30
+------------------------------
+Train Loss: 0.0009, Train Acc: 19.65%
+Val Loss: 0.0009, Val Acc: 18.94%
+
+Best model parameters saved at epoch 4!
+
+Epoch 5/30
+------------------------------
+Train Loss: 0.0009, Train Acc: 20.60%
+Val Loss: 0.0010, Val Acc: 19.35%
+
+Epoch 6/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 26.25%
+Val Loss: 0.0009, Val Acc: 22.31%
+
+Best model parameters saved at epoch 6!
+
+Epoch 7/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 27.27%
+Val Loss: 0.0009, Val Acc: 22.53%
+
+Epoch 8/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 27.71%
+Val Loss: 0.0009, Val Acc: 22.57%
+
+Best model parameters saved at epoch 8!
+
+Epoch 9/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 27.99%
+Val Loss: 0.0009, Val Acc: 23.00%
+
+Best model parameters saved at epoch 9!
+
+Epoch 10/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 28.34%
+Val Loss: 0.0009, Val Acc: 22.98%
+
+Epoch 11/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.12%
+Val Loss: 0.0009, Val Acc: 23.38%
+
+Best model parameters saved at epoch 11!
+
+Epoch 12/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.30%
+Val Loss: 0.0009, Val Acc: 23.85%
+
+Epoch 13/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.23%
+Val Loss: 0.0009, Val Acc: 23.50%
+
+Best model parameters saved at epoch 13!
+
+Epoch 14/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.37%
+Val Loss: 0.0009, Val Acc: 23.51%
+
+Epoch 15/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.41%
+Val Loss: 0.0009, Val Acc: 23.39%
+
+Epoch 16/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.55%
+Val Loss: 0.0009, Val Acc: 23.56%
+
+Epoch 17/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.51%
+Val Loss: 0.0009, Val Acc: 23.66%
+
+Epoch 18/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.53%
+Val Loss: 0.0009, Val Acc: 23.27%
+
+Epoch 19/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.57%
+Val Loss: 0.0009, Val Acc: 23.51%
+
+Epoch 20/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.63%
+Val Loss: 0.0009, Val Acc: 23.62%
+
+Epoch 21/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.57%
+Val Loss: 0.0009, Val Acc: 23.65%
+
+Epoch 22/30
+------------------------------
+Train Loss: 0.0008, Train Acc: 29.56%
+Val Loss: 0.0009, Val Acc: 23.42%
+
+Epoch 23/30
+------------------------------

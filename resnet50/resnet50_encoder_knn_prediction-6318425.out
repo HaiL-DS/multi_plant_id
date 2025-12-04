@@ -1,0 +1,11 @@
+Using device: cuda
+Found 1408033 total images belonging to 7806 classes.
+
+--- Train Dataloader Pipeline Created ---
+Loading data from: /sfs/weka/scratch/hl9h/PlantCLEF2025_data/test_images/images
+
+--- Dataloader Pipelines Created ---
+Found 2105 total quadrat images.
+
+--- Inference Dataloader Pipeline Created ---
+Extracting training features...

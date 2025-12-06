@@ -28,7 +28,6 @@ We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
 ###  How to Load
 
 1. **Download the weights** from the [Releases Page]().
-2. 
    ```bash
    wget https://github.com/jme-sds/multi_plant_id/releases/download/v1.0.0/baseline_fine_tuned.pth
    ```
@@ -38,46 +37,46 @@ We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
    ```
 4. **Run this Python script:**
 
-```python
-import torch
-import timm
-from peft import PeftModel
-
-def load_plantclef_model(checkpoint_path="final_fine_tuned_model.pth", device="cuda"):
-    print(f"Loading model from {checkpoint_path}...")
-    
-    # 1. Initialize Base DINOv2 Model
-    model = timm.create_model(
-        "vit_base_patch14_reg4_dinov2.lvd142m", 
-        pretrained=False, 
-        num_classes=7806  # PlantCLEF class count
-    )
-    
-    # 2. Load the State Dictionary
-    checkpoint = torch.load(checkpoint_path, map_location=device)
-    
-    # Handle standard vs. wrapped state dicts
-    if 'state_dict' in checkpoint:
-        state_dict = checkpoint['state_dict']
-    else:
-        state_dict = checkpoint
-
-    # 3. Load weights into model
-    msg = model.load_state_dict(state_dict, strict=False)
-    print(f"Load status: {msg}")
-    
-    model.to(device)
-    model.eval()
-    return model
-
-# Usage
-# model = load_plantclef_model("path/to/downloaded/final_fine_tuned_model.pth")
-```
+   ```python
+   import torch
+   import timm
+   from peft import PeftModel
+   
+   def load_plantclef_model(checkpoint_path="final_fine_tuned_model.pth", device="cuda"):
+       print(f"Loading model from {checkpoint_path}...")
+       
+       # 1. Initialize Base DINOv2 Model
+       model = timm.create_model(
+           "vit_base_patch14_reg4_dinov2.lvd142m", 
+           pretrained=False, 
+           num_classes=7806  # PlantCLEF class count
+       )
+       
+       # 2. Load the State Dictionary
+       checkpoint = torch.load(checkpoint_path, map_location=device)
+       
+       # Handle standard vs. wrapped state dicts
+       if 'state_dict' in checkpoint:
+           state_dict = checkpoint['state_dict']
+       else:
+           state_dict = checkpoint
+   
+       # 3. Load weights into model
+       msg = model.load_state_dict(state_dict, strict=False)
+       print(f"Load status: {msg}")
+       
+       model.to(device)
+       model.eval()
+       return model
+   
+   # Usage
+   # model = load_plantclef_model("path/to/downloaded/final_fine_tuned_model.pth")
+   ```
 
 Or if you prefer, you can clone this repo!
 
 ```bash
-git clone [https://github.com/jme-sds/multi_plant_id](https://github.com/jme-sds/multi_plant_id)
+git clone https://github.com/jme-sds/multi_plant_id
 ```
 
 And install the dependecies.

@@ -30,7 +30,7 @@ We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
 1. **Download the weights** from the [Releases Page]().
 2. **Install dependencies:**
    ```bash
-   pip install torch timm peft
+   pip install torch tqdm numpy scipy scikit-learn torchvision torchaudio matplotlib seaborn
    ```
 4. **Run this Python script:**
 

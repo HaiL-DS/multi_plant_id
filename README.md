@@ -17,4 +17,4 @@ All of the data can be loaded and created as datasets using the methods found in
 The `dino` and `knn` folders are used in the creating of our final ViT model. The final model leverages a trained classification head as well as a FAISS index with knn voting schema.
 
 ### Final Model 
-The final model leverages a trained classification head as well as 3x4 tiled grid pattern and knn voting. This model can be found in the `dino` folder and downloaded [here]([url]https://github.com/jme-sds/multi_plant_id/releases/tag/v1.0.0)
+The final model leverages a trained classification head as well as 3x4 tiled grid pattern and knn voting. This model can be found in the `dino` folder and downloaded [here](https://github.com/jme-sds/multi_plant_id/releases/tag/v1.0.0)

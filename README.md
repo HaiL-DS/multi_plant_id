@@ -28,8 +28,9 @@ We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
 ###  How to Load
 
 1. **Download the weights** from the [Releases Page]().
+2. 
    ```bash
-   wget [https://github.com/jme-sds/multi_plant_id/releases/download/v1.0.0/baseline_fine_tuned.pth](https://github.com/jme-sds/multi_plant_id/releases/download/v1.0.0/baseline_fine_tuned.pth)
+   wget https://github.com/jme-sds/multi_plant_id/releases/download/v1.0.0/baseline_fine_tuned.pth
    ```
 3. **Install dependencies:**
    ```bash

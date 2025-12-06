@@ -77,7 +77,7 @@ def load_plantclef_model(checkpoint_path="final_fine_tuned_model.pth", device="c
 Or if you prefer, you can clone this repo!
 
 ```bash
-git clone [https://github.com/jme-sds/multi_plant_id](https://github.com/jme-sds/multi_plant_id)
+git clone https://github.com/jme-sds/multi_plant_id
 ```
 
 And install the dependecies.

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 353, in <module>
+    main()
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 283, in main
+    model = get_model(args.backbone, device, num_classes=None, use_lora=False, lora_checkpoint=args.lora_checkpoint)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 115, in get_model
+    raise FileNotFoundError(f"LoRA config not found at {lora_checkpoint}")
+FileNotFoundError: LoRA config not found at /scratch/ezq9qu/Lucas/lora_lucas_ssl_weights

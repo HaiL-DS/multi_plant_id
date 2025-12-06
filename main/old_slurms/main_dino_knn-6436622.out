@@ -1,0 +1,43 @@
+Job ID: 6436622
+Running on node: udc-an38-33
+Using Python: /scratch/ezq9qu/llm_course/bin/python
+--- Detected 4 GPUs. Using Batch Size: 128 ---
+
+--- Setting up Single Plant Dataloader ---
+Loading data from: /scratch/ezq9qu/images_max_side_800
+
+Splitting dataset
+
+Found 1408033 total images belonging to 7806 classes.
+
+--- Loading Model for Inference ---
+Loading model: dinov2...
+Loading LoRA adapters from: /scratch/ezq9qu/lucas/lora_lucas_ssl_weights
+Warning: Loading LoRA on DINOv2 without a classification head.
+LoRA weights merged into backbone.
+Extracting training embeddings...
+Building FAISS Index...
+
+--- Processing Grid Size: 4x4 ---
+Initializing inference dataset for a 4x4 grid.
+Found 2105 images, creating 33680 total tiles.
+Extracting embeddings...
+Running KNN...
+
+--- Processing Grid Size: 5x5 ---
+Initializing inference dataset for a 5x5 grid.
+Found 2105 images, creating 52625 total tiles.
+Extracting embeddings...
+Running KNN...
+
+--- Processing Grid Size: 6x6 ---
+Initializing inference dataset for a 6x6 grid.
+Found 2105 images, creating 75780 total tiles.
+Extracting embeddings...
+Running KNN...
+
+Pooling votes from all grids...
+  Aggregating votes for 2105 unique quadrats...
+Writing submission to /scratch/ezq9qu/submissions/submission_dinov2_lora_custom.csv
+
+Done! Saved to: /scratch/ezq9qu/submissions/submission_dinov2_lora_custom.csv

@@ -28,8 +28,11 @@ We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
 ###  How to Load
 
 1. **Download the weights** from the [Releases Page]().
-2. **Install dependencies:** `pip install torch timm peft`
-3. **Run this Python script:**
+2. **Install dependencies:**
+   ```bash
+   pip install torch timm peft
+   ```
+4. **Run this Python script:**
 
 ```python
 import torch

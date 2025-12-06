@@ -16,5 +16,53 @@ All of the data can be loaded and created as datasets using the methods found in
 
 The `dino` and `knn` folders are used in the creating of our final ViT model. The final model leverages a trained classification head as well as a FAISS index with knn voting schema.
 
-### Final Model 
-The final model leverages a trained classification head as well as 3x4 tiled grid pattern and knn voting. This model can be found in the `dino` folder and downloaded [here](https://github.com/jme-sds/multi_plant_id/releases/tag/v1.0.0)
+## Final Model 
+The final model leverages a trained classification head as well as 3x4 tiled grid pattern and knn voting.
+
+We provide our best fine-tuned model (DINOv2 + LoRA) via GitHub Releases.
+
+| Model | Backbone | Validation Score | Download |
+| :--- | :--- | :--- | :--- |
+| **PlantCLEF-2025-Best** | DINOv2 (ViT-B/14) | **0.28 F1** | [Download Checkpoint]([./releases](https://github.com/jme-sds/multi_plant_id/releases/tag/v1.0.0)) |
+
+###  How to Load
+
+1. **Download the weights** from the [Releases Page]().
+2. **Install dependencies:** `pip install torch timm peft`
+3. **Run this Python script:**
+
+```python
+import torch
+import timm
+from peft import PeftModel
+
+def load_plantclef_model(checkpoint_path="final_fine_tuned_model.pth", device="cuda"):
+    print(f"Loading model from {checkpoint_path}...")
+    
+    # 1. Initialize Base DINOv2 Model
+    model = timm.create_model(
+        "vit_base_patch14_reg4_dinov2.lvd142m", 
+        pretrained=False, 
+        num_classes=7806  # PlantCLEF class count
+    )
+    
+    # 2. Load the State Dictionary
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    
+    # Handle standard vs. wrapped state dicts
+    if 'state_dict' in checkpoint:
+        state_dict = checkpoint['state_dict']
+    else:
+        state_dict = checkpoint
+
+    # 3. Load weights into model
+    msg = model.load_state_dict(state_dict, strict=False)
+    print(f"Load status: {msg}")
+    
+    model.to(device)
+    model.eval()
+    return model
+
+# Usage
+# model = load_plantclef_model("path/to/downloaded/final_fine_tuned_model.pth")
+```

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/scratch/ezq9qu/llm_course/lib/python3.11/site-packages/peft/config.py", line 262, in _get_peft_type
+    config_file = hf_hub_download(
+                  ^^^^^^^^^^^^^^^^
+  File "/scratch/ezq9qu/llm_course/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/scratch/ezq9qu/llm_course/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/scratch/ezq9qu/Lucas/lora_lucas_ssl_weights'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 363, in <module>
+    main()
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 286, in main
+    model = get_model(args.backbone, device, num_classes=None, use_lora=False, lora_checkpoint=args.lora_checkpoint)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sfs/gpfs/tardis/home/ezq9qu/DS6050/multi_plant_id/main/main.py", line 119, in get_model
+    model = PeftModel.from_pretrained(model, lora_checkpoint)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/ezq9qu/llm_course/lib/python3.11/site-packages/peft/peft_model.py", line 440, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/scratch/ezq9qu/llm_course/lib/python3.11/site-packages/peft/config.py", line 268, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '/scratch/ezq9qu/Lucas/lora_lucas_ssl_weights'

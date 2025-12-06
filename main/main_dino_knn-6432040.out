@@ -1,0 +1,16 @@
+Job ID: 6432040
+Running on node: udc-an36-31
+Using Python: /scratch/ezq9qu/llm_course/bin/python
+--- Detected 4 GPUs. Using Batch Size: 128 ---
+
+--- Setting up Single Plant Dataloader ---
+Loading data from: /scratch/ezq9qu/images_max_side_800
+
+Splitting dataset
+
+Found 1408033 total images belonging to 7806 classes.
+
+--- STARTING LORA TRAINING ---
+Loading model: dinov2...
+Applying LoRA adapters...
+trainable params: 589,824 || all params: 93,174,654 || trainable%: 0.6330

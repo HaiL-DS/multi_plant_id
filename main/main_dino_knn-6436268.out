@@ -1,0 +1,17 @@
+Job ID: 6436268
+Running on node: udc-an38-33
+Using Python: /scratch/ezq9qu/llm_course/bin/python
+--- Detected 4 GPUs. Using Batch Size: 128 ---
+
+--- Setting up Single Plant Dataloader ---
+Loading data from: /scratch/ezq9qu/images_max_side_800
+
+Splitting dataset
+
+Found 1408033 total images belonging to 7806 classes.
+
+--- Loading Model for Inference ---
+Loading model: dinov2...
+
+ERROR: 'adapter_config.json' not found at /scratch/ezq9qu/Lucas/lora_lucas_ssl_weights/adapter_config.json
+Cannot list contents of /scratch/ezq9qu/Lucas
